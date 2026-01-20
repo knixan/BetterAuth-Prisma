@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata = {
   title: "BetterAuth Prisma Example",
@@ -14,11 +15,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <Navbar />
-        <Toaster position="top-right" />
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <Toaster position="top-right" />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
